@@ -54,15 +54,20 @@ export default defineConfig({
   server: {
     proxy: {
       "/bare/": {
-        target: "http://localhost:8080/",
+        target: "http://localhost:8080/bare/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/bare\//, "")
       },
       "/wisp/": {
-        target: "http://ruby.rubynetwork.co/wisp/",
+        target: "http://localhost:8080/wisp/",
         changeOrigin: true,
         ws: true,
         rewrite: (path) => path.replace(/^\/wisp\//, "")
+      },
+      "/search": {
+        target: "http://localhost:8080/search",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/search/, "")
       }
     }
   }
